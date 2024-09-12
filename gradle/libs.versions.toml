@@ -11,6 +11,9 @@ activity = "1.9.1"
 constraintlayout = "2.1.4"
 roomCommon = "2.6.1"
 roomCompiler = "2.6.1"
+ksp = "1.9.20-1.0.14"
+roomKtx = "2.7.0-alpha07"
+
 
 
 [libraries]
@@ -24,7 +27,9 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp-android = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
