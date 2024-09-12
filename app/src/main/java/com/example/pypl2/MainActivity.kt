@@ -2,6 +2,7 @@ package com.example.pypl2
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,7 +10,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.pypl2.datastorage.Item
 import com.example.pypl2.datastorage.ItemDao
 import com.example.pypl2.datastorage.ItemRoomDatabase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         var database = ItemRoomDatabase.getDatabase(this)
         dao = database.itemDao()
 
@@ -30,6 +34,14 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch {
             dao.insert(gItem)
 
+        }
+    }
+
+    fun getData(view: View) {
+        GlobalScope.launch(Dispatchers.Main) {
+           var item =  dao.getItem(11).first()
+            var tv:TextView = findViewById(R.id.textView)
+            tv.setText(item.itemName)
         }
     }
 }
