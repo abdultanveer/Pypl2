@@ -1,6 +1,8 @@
 package com.example.pypl2.datastorage
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
@@ -8,5 +10,22 @@ import androidx.room.RoomDatabase
 abstract class ItemRoomDatabase:RoomDatabase() {
     abstract fun itemDao(): ItemDao
 
+    companion object{
+        private var INSTANCE: ItemRoomDatabase? = null
 
-}
+        fun getDatabase(context : Context):ItemRoomDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(context.applicationContext,
+                    ItemRoomDatabase::class.java,
+                    "item_database")
+                    .fallbackToDestructiveMigration()
+                    .build()
+                INSTANCE = instance
+                return instance
+            }
+        }
+    }
+        }
+
+
+
