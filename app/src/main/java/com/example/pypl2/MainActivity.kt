@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pypl2.datastorage.Item
 import com.example.pypl2.datastorage.ItemDao
@@ -15,8 +16,8 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var dao: ItemDao
-lateinit var  tv:TextView
-    lateinit var viewModel:MainViewModel
+    lateinit var tv: TextView
+    lateinit var viewModel: MainViewModel
 
     //var dataDbWebserviceDb = 0
 
@@ -27,7 +28,9 @@ lateinit var  tv:TextView
 
         tv = findViewById(R.id.textView)
 
-        tv.setText(""+ viewModel.dataDbWebserviceDb)
+        tv.setText("" + viewModel.dataDbWebserviceDb)
+        viewModel._seconds.observe(this, secsObserver); //me giving my phno to the postman
+        //plz inform this observer when secs change
 
 
         var database = ItemRoomDatabase.getDatabase(this)
@@ -47,20 +50,25 @@ lateinit var  tv:TextView
 
     fun getData(view: View) {
         GlobalScope.launch(Dispatchers.Main) {
-           var item =  dao.getItem(11).first()
-            var tv:TextView = findViewById(R.id.textView)
+            var item = dao.getItem(11).first()
+            var tv: TextView = findViewById(R.id.textView)
             tv.setText(item.itemName)
         }
     }
 
 
-
     fun incrementCount(view: View) {
-      viewModel.startTimer()
-        tv.setText(""+viewModel._seconds)
+        viewModel.startTimer()
+        //  tv.setText(""+viewModel._seconds)
     }
 
-  /*  fun incrementCounter(){
+    var secsObserver: Observer<Int> = object : Observer<Int> {
+        override fun onChanged(value: Int) {
+            //receiving the update/notification
+            tv.setText(value.toString())
+        }
+        /*  fun incrementCounter(){
         dataDbWebserviceDb++
     }*/
+    }
 }
