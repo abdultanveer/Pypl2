@@ -56,9 +56,8 @@ lateinit var  tv:TextView
 
 
     fun incrementCount(view: View) {
-       // incrementCounter()
-        viewModel.incrementCounter()
-        tv.setText(""+viewModel.dataDbWebserviceDb)
+      viewModel.startTimer()
+        tv.setText(""+viewModel._seconds)
     }
 
   /*  fun incrementCounter(){
