@@ -45,9 +45,31 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="34dp"
-        android:text="counter"
         android:onClick="incrementCount"
+        android:text="counter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPut" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:onClick="sendDataFs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="14dp"
+        android:text="send fs"
+        app:layout_constraintStart_toStartOf="@+id/btnCounter"
+        app:layout_constraintTop_toBottomOf="@+id/btnCounter" />
+
+    <Button
+        android:id="@+id/btnGetfs"
+        android:onClick="getDataFs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="28dp"
+        android:text="get fs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSend" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
