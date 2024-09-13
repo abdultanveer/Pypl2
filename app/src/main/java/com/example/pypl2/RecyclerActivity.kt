@@ -6,7 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerActivity : AppCompatActivity() {
-    var languages = arrayOf("english","hindi","tamil","telgu","kannada","urdu")
+    var languages = arrayOf("english","hindi","tamil","telgu","kannada","urdu",
+        "english","hindi","tamil","telgu","kannada","urdu",
+        "english","hindi","tamil","telgu","kannada","urdu",
+        "english","hindi","tamil","telgu","kannada","urdu",
+        "english","hindi","tamil","telgu","kannada","urdu",
+        "english","hindi","tamil","telgu","kannada","urdu",
+        "english","hindi","tamil","telgu","kannada","urdu",
+        "english","hindi","tamil","telgu","kannada","urdu")
 
     lateinit var  languagesrecyView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {

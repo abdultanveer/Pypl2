@@ -11,7 +11,7 @@ class LangsAdapter(var languages: Array<String>) :RecyclerView.Adapter<LangsView
     var TAG = LangsAdapter::class.java.simpleName
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LangsViewHolder {
-        Log.i(TAG,"saravannan bought a visiting card for row from market is giving to chirag ")
+        Log.e(TAG,"saravannan bought a visiting card for row from market is giving to chirag ")
         var visitingCard = LayoutInflater.from(parent.context).inflate(R.layout.visiting_card,parent,false)
         return LangsViewHolder(visitingCard)
     }
