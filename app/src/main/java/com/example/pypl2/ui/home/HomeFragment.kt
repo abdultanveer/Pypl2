@@ -32,6 +32,10 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        binding.btnJson.setOnClickListener {
+            homeViewModel.getMarsPhotos()
+        }
         return root
     }
 
