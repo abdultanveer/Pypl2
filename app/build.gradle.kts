@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.retrofit)
     implementation(libs.converter.scalars)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.converter.moshi)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

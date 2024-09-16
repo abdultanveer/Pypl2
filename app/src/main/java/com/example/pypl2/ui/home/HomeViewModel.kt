@@ -16,7 +16,7 @@ class HomeViewModel : ViewModel() {
 
      fun getMarsPhotos() {
         viewModelScope.launch {
-            val listResult = MarsApi.retrofitService.getPhotos()
+            val listResult = MarsApi.retrofitService.getPhotos().get(0).imgSrc
             _text.value = listResult
 
         }
