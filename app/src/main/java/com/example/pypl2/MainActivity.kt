@@ -78,8 +78,8 @@ class MainActivity : AppCompatActivity() {
     fun sendDataFs(view: View) {
         val db = Firebase.firestore
         val user = hashMapOf(
-            "first" to "Ada",
-            "last" to "Lovelace",
+            "first" to "abdul",
+            "last" to "tannveer",
             "born" to 1815
         )
 
