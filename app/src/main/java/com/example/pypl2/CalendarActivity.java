@@ -1,6 +1,9 @@
 package com.example.pypl2;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +18,13 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+       
+    }
+
+    public void getSetTv(View view) {
+        EditText etTest = findViewById(R.id.etTest);
+        String data = etTest.getText().toString();
+        TextView tvTest = findViewById(R.id.tvTeest);
+        tvTest.setText(data);
     }
 }
