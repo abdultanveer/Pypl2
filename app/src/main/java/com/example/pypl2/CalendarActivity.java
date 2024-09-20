@@ -12,6 +12,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -43,7 +44,6 @@ public class CalendarActivity extends AppCompatActivity {
         } else {
             Uri uriSms = Uri.parse("content://sms/inbox");
              cursor = getContentResolver().query(uriSms, null,null,null,null);
-             //adapter.notifyDataSetChanged();
         }
 
        ListView contentListView = findViewById(R.id.listView);
@@ -52,8 +52,20 @@ public class CalendarActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_2,cursor,from,to,0);
         contentListView.setAdapter(adapter);
        // adapter.notifyDataSetChanged();
+    }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Uri uriSms = Uri.parse("content://sms/inbox");
+                cursor = getContentResolver().query(uriSms, null,null,null,null);
+                adapter.notifyDataSetChanged();
+            }
+        }
     }
 
     public void getSetTv(View view) {
