@@ -1,5 +1,7 @@
 package com.example.pypl2;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,12 +13,13 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 
 public class CalendarActivity extends AppCompatActivity {
-
+    Cursor cursor;
+    SimpleCursorAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,13 +33,25 @@ public class CalendarActivity extends AppCompatActivity {
         super.onStart();
         String[] from = new String[]{"body","address"};
         int[] to = {android.R.id.text1,android.R.id.text2};
-        Uri uriSms = Uri.parse("content://sms/inbox");
-        Cursor cursor = getContentResolver().query(uriSms, null,null,null,null);
-        ListView contentListView = findViewById(R.id.listView);
 
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.READ_SMS}, 100);
+        } else {
+            Uri uriSms = Uri.parse("content://sms/inbox");
+             cursor = getContentResolver().query(uriSms, null,null,null,null);
+             //adapter.notifyDataSetChanged();
+        }
+
+       ListView contentListView = findViewById(R.id.listView);
+
+         adapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_2,cursor,from,to,0);
         contentListView.setAdapter(adapter);
+       // adapter.notifyDataSetChanged();
 
 
     }
