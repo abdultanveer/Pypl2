@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -17,6 +18,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 
 public class CalendarActivity extends AppCompatActivity {
     Cursor cursor;
@@ -24,7 +29,6 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar);
        
     }
@@ -46,6 +50,9 @@ public class CalendarActivity extends AppCompatActivity {
              cursor = getContentResolver().query(uriSms, null,null,null,null);
         }
 
+
+
+
        ListView contentListView = findViewById(R.id.listView);
 
          adapter = new SimpleCursorAdapter(this,
@@ -54,6 +61,20 @@ public class CalendarActivity extends AppCompatActivity {
        // adapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(
+                new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        // val token: String = task.getResult().toString()
+                        String token = task.getResult().toString();
+                        Log.i("TAG","token is--"+token);
+                    }
+                }
+        );
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,

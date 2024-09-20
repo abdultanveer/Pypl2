@@ -15,6 +15,7 @@ ksp = "1.9.20-1.0.14"
 roomKtx = "2.7.0-alpha07"
 googleGmsGoogleServices = "4.4.2"
 firebaseFirestore = "25.1.0"
+firebaseMessaging = "24.0.1"
 
 
 
@@ -31,6 +32,7 @@ androidx-room-common = { group = "androidx.room", name = "room-common", version.
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
